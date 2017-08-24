@@ -20,7 +20,6 @@ let secode = require("../../resources/images/home/secode.png");
 let acount_img = require("../../resources/images/home/acount_img.png");
 
 
-
 export default class extends React.Component {
 
     /**
@@ -29,7 +28,7 @@ export default class extends React.Component {
      */
     constructor(props) {
         super(props);
-        this.banners = [] ;
+        this.banners = [];
         this.iosMarginTop = Platform.OS == 'ios' ? {marginTop: 20} : {};
 
         //demo  banner图片地址
@@ -49,9 +48,19 @@ export default class extends React.Component {
         ];
 
         this.state = {
-            listData : {
-                code : 0 ,
-                data : []
+            listData: {
+                code: 0,
+                data: [
+                    {a: "a"},
+                    {a: "a"},
+                    {a: "a"},
+                    {a: "a"},
+                    {a: "a"},
+                    {a: "a"},
+                    {a: "a"},
+                    {a: "a"},
+                    {a: "a"}
+                ]
             }
         }
     }
@@ -59,16 +68,26 @@ export default class extends React.Component {
     /**
      * 收益动态
      */
-    renderItem(data){
+    renderItem(data) {
         return (
             <View style={styles.listItem}>
                 <Image style={{
-                    width : 8 ,
-                    height : 8 ,
-                    resizeMode : "stretch"
+                    width: 14,
+                    height: 14,
+                    marginLeft :15 ,
+                    resizeMode: "stretch"
                 }}
-                sources = {require("../../resources/images/home/info_msg.png")}
+                       source={require("../../resources/images/home/info_msg.png")}
                 />
+                <Text style={{ marginLeft : 10, fontSize : 12 }}>
+                    {"8月24日"}
+                </Text>
+                <Text style={{ marginLeft : 10,fontSize : 12 ,color:"black"}}>
+                    用户: {"136******781"}
+                </Text>
+                <Text style={{ marginLeft : 10,fontSize : 13 ,color:"red"}}>
+                    出账金额{"20"}元
+                </Text>
             </View>
         )
     }
@@ -128,7 +147,7 @@ export default class extends React.Component {
                             未排队
                         </Text>
                     </View>
-                    <View style={[styles.acount_view2_children,{justifyContent:"flex-end"}]}>
+                    <View style={[styles.acount_view2_children, {justifyContent: "flex-end"}]}>
                         <Text style={styles.acount_text2}>
                             0 张
                         </Text>
@@ -142,7 +161,7 @@ export default class extends React.Component {
                             排队中
                         </Text>
                     </View>
-                    <View style={[styles.acount_view2_children,{justifyContent:"flex-end"}]}>
+                    <View style={[styles.acount_view2_children, {justifyContent: "flex-end"}]}>
                         <Text style={styles.acount_text2}>
                             0 张
                         </Text>
@@ -156,7 +175,7 @@ export default class extends React.Component {
                             已完成
                         </Text>
                     </View>
-                    <View style={[styles.acount_view2_children,{justifyContent:"flex-end"}]}>
+                    <View style={[styles.acount_view2_children, {justifyContent: "flex-end"}]}>
                         <Text style={styles.acount_text2}>
                             0 张
                         </Text>
@@ -166,19 +185,19 @@ export default class extends React.Component {
             </View>
             <View style={styles.bannerView}>
                 <View style={[styles.banner, this.iosMarginTop]}>
-                    <Banner style={{flex:1}}
+                    <Banner style={{flex: 1}}
                             banners={this.banners}
                     />
                 </View>
             </View>
             <View style={styles.list}>
-                <View style={[styles.acount_view,{borderBottomWidth:0.5,borderBottomColor:"rgb(239,239,224)"}]}>
+                <View style={[styles.acount_view, {borderBottomWidth: 0.5, borderBottomColor: "rgb(239,239,224)"}]}>
                     <Image style={styles.acount_img} source={require("../../resources/images/home/info.png")}/>
                     <Text style={styles.acount_text}>
                         收益动态
                     </Text>
                 </View>
-                <ListView data={this.state.listData} renderItem={this.renderItem.bind(this)}/>
+                <ListView data={this.state.listData} renderItem={this.renderItem.bind(this)} autoRun={true}/>
             </View>
         </View>
     }
@@ -221,7 +240,7 @@ let styles = StyleSheet.create({
         backgroundColor: "rgb(239,239,224)"
     },
     acount_view: {
-        paddingLeft : 2 ,
+        paddingLeft: 2,
         flexDirection: "row",
         alignItems: "center",
         marginTop: 8,
@@ -229,26 +248,26 @@ let styles = StyleSheet.create({
         height: 40
     },
     acount_view2: {
-        paddingLeft : 5 ,
+        paddingLeft: 5,
         flexDirection: "row",
         alignItems: "center",
         backgroundColor: "white",
-        height: 40 ,
-        justifyContent:"space-between"
+        height: 40,
+        justifyContent: "space-between"
     },
-    acount_view2_children : {
+    acount_view2_children: {
         flexDirection: "row",
-        width:"50%",
-        alignItems : "center"
+        width: "50%",
+        alignItems: "center"
     },
     acount_img: {
-        width: 12 ,
+        width: 12,
         height: 12,
         resizeMode: "stretch",
         marginLeft: 5
     },
     acount_img1: {
-        width: 14 ,
+        width: 14,
         height: 14,
         resizeMode: "stretch",
         marginLeft: 5
@@ -257,7 +276,7 @@ let styles = StyleSheet.create({
         width: 8,
         height: 12,
         resizeMode: "stretch",
-        marginLeft: 10 ,
+        marginLeft: 10,
         marginRight: 10
     },
     acount_text: {
@@ -265,8 +284,8 @@ let styles = StyleSheet.create({
         color: "#5CC3FA"
     },
     acount_text2: {
-        marginLeft: 5 ,
-        color : "#4e4e4e"
+        marginLeft: 5,
+        color: "#4e4e4e"
 
     },
     acount_line1: {
@@ -279,23 +298,26 @@ let styles = StyleSheet.create({
         height: 0.3,
         backgroundColor: "rgb(239,239,224)"
     },
-    bannerView : {
-        height : 120 ,
-        width : "100%",
+    bannerView: {
+        height: 120,
+        width: "100%",
         backgroundColor: "rgb(239,239,224)"
     },
-    banner : {
-        flex : 1 ,
-        marginTop : 5 ,
-        marginBottom : 5 ,
-        backgroundColor : "white"
+    banner: {
+        flex: 1,
+        marginTop: 5,
+        marginBottom: 5,
+        backgroundColor: "white"
     },
-    list : {
-        flex : 1
+    list: {
+        flex: 1
     },
-    listItem : {
-        flexDirection :"row" ,
-        height : 30,
-        alignItems : "center"
+    listItem: {
+        flex: 1,
+        flexDirection: "row",
+        height: 50,
+        alignItems: "center",
+        borderBottomWidth:1,
+        borderBottomColor:"rgb(239,239,224)"
     },
 })
