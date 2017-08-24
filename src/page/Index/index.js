@@ -7,7 +7,10 @@ import {
     Platform
 } from "react-native"
 import TitleBar from "../titleBar"
-import Banner from 'react-native-banner';
+import Banner from '../../common/banner';
+import ListView from "../../common/listView"
+
+//工具类
 import fetch from "../../common/util/fetch"
 
 let qrcode = require("../../resources/images/home/qrcode.png");
@@ -20,21 +23,60 @@ let acount_img = require("../../resources/images/home/acount_img.png");
 
 export default class extends React.Component {
 
+    /**
+     * 初始化
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.banners = [] ;
         this.iosMarginTop = Platform.OS == 'ios' ? {marginTop: 20} : {};
+
+        //demo  banner图片地址
+        this.banners = [
+            {
+                image: 'http://www.qq745.com/uploads/allimg/141106/1-141106153Q5.png',
+            },
+            {
+                image: 'http://img1.3lian.com/2015/a1/53/d/200.jpg',
+            },
+            {
+                image: 'http://img1.3lian.com/2015/a1/53/d/198.jpg',
+            },
+            {
+                image: 'http://image.tianjimedia.com/uploadImages/2012/235/9J92Z5E5R868.jpg',
+            },
+        ];
+
         this.state = {
-            defaultIndex: 0,
-        } ;
-        this.defaultIndex = 0;
-    }
-    clickListener(index) {
-    }
-    onMomentumScrollEnd(event, state) {
-        this.defaultIndex = state.index;
+            listData : {
+                code : 0 ,
+                data : []
+            }
+        }
     }
 
+    /**
+     * 收益动态
+     */
+    renderItem(data){
+        return (
+            <View style={styles.listItem}>
+                <Image style={{
+                    width : 8 ,
+                    height : 8 ,
+                    resizeMode : "stretch"
+                }}
+                sources = {require("../../resources/images/home/info_msg.png")}
+                />
+            </View>
+        )
+    }
+
+    /**
+     * 界面渲染
+     * @returns {XML}
+     */
     render() {
         return <View style={{flex: 1}}>
             <TitleBar
@@ -125,12 +167,18 @@ export default class extends React.Component {
             <View style={styles.bannerView}>
                 <View style={[styles.banner, this.iosMarginTop]}>
                     <Banner style={{flex:1}}
-                        banners={this.banners}
-                        defaultIndex={this.defaultIndex}
-                        onMomentumScrollEnd={this.onMomentumScrollEnd.bind(this)}
-                        intent={this.clickListener.bind(this)}
+                            banners={this.banners}
                     />
                 </View>
+            </View>
+            <View style={styles.list}>
+                <View style={[styles.acount_view,{borderBottomWidth:0.5,borderBottomColor:"rgb(239,239,224)"}]}>
+                    <Image style={styles.acount_img} source={require("../../resources/images/home/info.png")}/>
+                    <Text style={styles.acount_text}>
+                        收益动态
+                    </Text>
+                </View>
+                <ListView data={this.state.listData} renderItem={this.renderItem.bind(this)}/>
             </View>
         </View>
     }
@@ -241,5 +289,13 @@ let styles = StyleSheet.create({
         marginTop : 5 ,
         marginBottom : 5 ,
         backgroundColor : "white"
-    }
+    },
+    list : {
+        flex : 1
+    },
+    listItem : {
+        flexDirection :"row" ,
+        height : 30,
+        alignItems : "center"
+    },
 })

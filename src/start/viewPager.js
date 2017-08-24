@@ -91,7 +91,7 @@ class Thumb extends React.Component {
                            style={{
                                resizeMode: "contain",
                                //position: "absolute",
-                               bottom: "5%",
+                               bottom: "10%",
                                width: "70%"
                            }}
                     />
