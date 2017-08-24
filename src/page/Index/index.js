@@ -4,12 +4,12 @@ import {
     Text,
     Image,
     StyleSheet,
-    Platform
+    Platform,
+    ScrollView
 } from "react-native"
 import TitleBar from "../titleBar"
 import Banner from '../../common/banner';
-import ListView from "../../common/listView"
-
+import Marquee from "../../common/marquee"
 //工具类
 import fetch from "../../common/util/fetch"
 
@@ -46,23 +46,14 @@ export default class extends React.Component {
                 image: 'http://image.tianjimedia.com/uploadImages/2012/235/9J92Z5E5R868.jpg',
             },
         ];
+    }
 
-        this.state = {
-            listData: {
-                code: 0,
-                data: [
-                    {a: "a"},
-                    {a: "a"},
-                    {a: "a"},
-                    {a: "a"},
-                    {a: "a"},
-                    {a: "a"},
-                    {a: "a"},
-                    {a: "a"},
-                    {a: "a"}
-                ]
-            }
+    createMarquee(){
+        let items = [] ;
+        for(let i = 0 ; i<10 ;i++){
+            items.push(this.renderItem(i))
         }
+        return items
     }
 
     /**
@@ -70,7 +61,7 @@ export default class extends React.Component {
      */
     renderItem(data) {
         return (
-            <View style={styles.listItem}>
+            <View style={styles.listItem} key={"item"+data}>
                 <Image style={{
                     width: 14,
                     height: 14,
@@ -197,7 +188,9 @@ export default class extends React.Component {
                         收益动态
                     </Text>
                 </View>
-                <ListView data={this.state.listData} renderItem={this.renderItem.bind(this)} autoRun={true}/>
+                <ScrollView style={{flex:1}}>
+                    {this.createMarquee()}
+                </ScrollView>
             </View>
         </View>
     }
@@ -299,14 +292,14 @@ let styles = StyleSheet.create({
         backgroundColor: "rgb(239,239,224)"
     },
     bannerView: {
-        height: 120,
+        height: 160,
         width: "100%",
         backgroundColor: "rgb(239,239,224)"
     },
     banner: {
         flex: 1,
-        marginTop: 5,
-        marginBottom: 5,
+        marginTop: 6,
+        marginBottom: 6,
         backgroundColor: "white"
     },
     list: {
