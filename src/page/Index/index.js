@@ -5,11 +5,13 @@ import {
     Image,
     StyleSheet,
     Platform,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from "react-native"
 import TitleBar from "../titleBar"
 import Banner from '../../common/banner';
-import Marquee from "../../common/marquee"
+import Qrcode from "../../common/qrcode"
+
 //工具类
 import fetch from "../../common/util/fetch"
 
@@ -48,9 +50,33 @@ export default class extends React.Component {
         ];
     }
 
-    createMarquee(){
-        let items = [] ;
-        for(let i = 0 ; i<10 ;i++){
+    /**
+     * 扫一扫
+     */
+    toQrcode() {
+        /**
+         * 老版本跳转
+         */
+        const {navigator} = this.props;
+         if (navigator) {
+             navigator.push({
+                 name: 'qrcode',
+                 component: Qrcode,
+             })
+         }
+
+        //新版本路由
+        /*const {navigate} = this.props.navigation;
+        navigate("Qrcode")*/
+    }
+
+    /**
+     * 收益动态列表
+     * @returns {Array}
+     */
+    createMarquee() {
+        let items = [];
+        for (let i = 0; i < 10; i++) {
             items.push(this.renderItem(i))
         }
         return items
@@ -61,22 +87,22 @@ export default class extends React.Component {
      */
     renderItem(data) {
         return (
-            <View style={styles.listItem} key={"item"+data}>
+            <View style={styles.listItem} key={"item" + data}>
                 <Image style={{
                     width: 14,
                     height: 14,
-                    marginLeft :15 ,
+                    marginLeft: 15,
                     resizeMode: "stretch"
                 }}
                        source={require("../../resources/images/home/info_msg.png")}
                 />
-                <Text style={{ marginLeft : 10, fontSize : 12 }}>
+                <Text style={{marginLeft: 10, fontSize: 12}}>
                     {"8月24日"}
                 </Text>
-                <Text style={{ marginLeft : 10,fontSize : 12 ,color:"black"}}>
+                <Text style={{marginLeft: 10, fontSize: 12, color: "black"}}>
                     用户: {"136******781"}
                 </Text>
-                <Text style={{ marginLeft : 10,fontSize : 13 ,color:"red"}}>
+                <Text style={{marginLeft: 10, fontSize: 13, color: "red"}}>
                     出账金额{"20"}元
                 </Text>
             </View>
@@ -96,10 +122,13 @@ export default class extends React.Component {
             />
             <View style={styles.tools}>
                 <View style={styles.tool}>
-                    <Image style={styles.toolImage} source={qrcode}/>
+                    <TouchableOpacity onPress={this.toQrcode.bind(this)}>
+                        <Image style={styles.toolImage} source={qrcode}/>
+                    </TouchableOpacity>
                     <Text style={styles.toolText}>
                         扫一扫
                     </Text>
+
                 </View>
                 <View style={styles.toolLine}/>
                 <View style={styles.tool}>
@@ -188,7 +217,7 @@ export default class extends React.Component {
                         收益动态
                     </Text>
                 </View>
-                <ScrollView style={{flex:1}}>
+                <ScrollView style={{flex: 1}}>
                     {this.createMarquee()}
                 </ScrollView>
             </View>
@@ -310,7 +339,7 @@ let styles = StyleSheet.create({
         flexDirection: "row",
         height: 50,
         alignItems: "center",
-        borderBottomWidth:1,
-        borderBottomColor:"rgb(239,239,224)"
+        borderBottomWidth: 1,
+        borderBottomColor: "rgb(239,239,224)"
     },
 })

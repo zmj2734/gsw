@@ -41,7 +41,7 @@ export default class extends React.Component{
                         renderIcon={() => <Image source={home}  style={styles.image}/>}
                         renderSelectedIcon={() => <Image source={home_selected} style={styles.image} />}
                         onPress={() => this.setState({ selectedTab: "index" })}>
-                        <IndexView/>
+                        <IndexView {...this.props}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === "merchant"}

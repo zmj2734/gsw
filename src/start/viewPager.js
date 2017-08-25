@@ -22,9 +22,6 @@ export default class extends React.Component {
         super(props)
     }
 
-    scrollToEnd() {
-    }
-
     render() {
         let createThumbRow = (uri, i) => <Thumb {...this.props} key={i} uri={uri} index={i}/>;
         return (
@@ -34,9 +31,6 @@ export default class extends React.Component {
                     horizontal={true}
                     pagingEnabled={true}
                     showsHorizontalScrollIndicator={false}
-                    scrollToEnd={
-                        this.scrollToEnd.bind(this)
-                    }
                 >
                     {THUMBS.map(createThumbRow)}
                 </ScrollView>
@@ -50,7 +44,7 @@ class Thumb extends React.Component {
         return false;
     }
 
-    toHome() {
+    toHome(){
         //老版本路由
         const {navigator} = this.props;
         if (navigator) {
@@ -60,10 +54,9 @@ class Thumb extends React.Component {
             })
         }
         //新版本路由
-      /*  const { navigate } = this.props.navigation;
-        navigate("Home")*/
+        /* const {navigate} = this.props.navigation;
+         navigate("Login")*/
     }
-
     render() {
         if (this.props.index == THUMBS.length - 1) {
             return (<View style={{
