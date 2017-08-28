@@ -11,7 +11,7 @@ import {
 import TitleBar from "../titleBar"
 import Banner from '../../common/banner';
 import Qrcode from "../../common/qrcode"
-
+import Mycode from "../mycode"
 //工具类
 import fetch from "../../common/util/fetch"
 
@@ -58,16 +58,30 @@ export default class extends React.Component {
          * 老版本跳转
          */
         const {navigator} = this.props;
-         if (navigator) {
-             navigator.push({
-                 name: 'qrcode',
-                 component: Qrcode,
-             })
-         }
-
+        if (navigator) {
+            navigator.push({
+                name: 'qrcode',
+                component: Qrcode,
+                params: {
+                    getUri: function (uri) {
+                        alert(uri.data)
+                    }
+                }
+            })
+        }
         //新版本路由
         /*const {navigate} = this.props.navigation;
         navigate("Qrcode")*/
+    }
+
+    toMyQrcode(){
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'mycode',
+                component: Mycode,
+            })
+        }
     }
 
     /**
@@ -146,7 +160,9 @@ export default class extends React.Component {
                 </View>
                 <View style={styles.toolLine}/>
                 <View style={styles.tool}>
-                    <Image style={styles.toolImage} source={secode}/>
+                    <TouchableOpacity onPress={this.toMyQrcode.bind(this)}>
+                        <Image style={styles.toolImage} source={secode}/>
+                    </TouchableOpacity>
                     <Text style={styles.toolText}>
                         我的收款码
                     </Text>

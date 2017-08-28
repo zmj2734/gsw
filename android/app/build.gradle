@@ -90,9 +90,16 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
+    signingConfigs {
+        gsw {
+            keyAlias 'gsw'
+            keyPassword '123123'
+            storeFile file('D:/gsw.jks')
+            storePassword '123123'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
-
     defaultConfig {
         applicationId "com.gsw"
         minSdkVersion 16
@@ -115,6 +122,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.gsw
         }
     }
     // applicationVariants are e.g. debug, release
@@ -122,7 +130,7 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
@@ -136,20 +144,17 @@ dependencies {
     compile project(':react-native-image-picker')
     compile project(':react-native-camera')
     compile project(':react-native-splash-screen')
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
-    compile "com.facebook.react:react-native:+"  // From node_modules
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.facebook.react:react-native:+'
+    // From node_modules
     // 如果你需要支持Android4.0(API level 14)之前的版本
     compile 'com.facebook.fresco:animated-base-support:1.0.1'
-
     // 如果你需要支持GIF动图
     compile 'com.facebook.fresco:animated-gif:1.0.1'
-
     // 如果你需要支持WebP格式，包括WebP动图
     compile 'com.facebook.fresco:animated-webp:1.0.1'
     compile 'com.facebook.fresco:webpsupport:1.0.1'
-
     // 如果只需要支持WebP格式而不需要动图
     compile 'com.facebook.fresco:webpsupport:1.0.1'
 }

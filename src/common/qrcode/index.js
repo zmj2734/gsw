@@ -71,6 +71,9 @@ export default class extends React.Component {
 
     barcodeReceived(e) {
         const {navigator} = this.props;
+        if(this.props.getUri){
+            this.props.getUri(e)
+        }
         if (navigator) {
             navigator.pop()
         }
@@ -94,17 +97,16 @@ export default class extends React.Component {
      * 相册
      */
     album(){
-        this.getCamera() ;
         const options = {} ;
         const _this = this ;
         ImagePicker.launchImageLibrary(options,(response) => {
             if(response.uri){
+                _this.getCamera() ;
                 _this.setState({
                     imageUri : response.uri
                 }) ;
-                _this.state.camera.capture({metadata: options})
-                    .then((data) => console.log(data))
-                    .catch(err => console.error(err));
+                options.location = response.uri ;
+
             }
         })
     }
