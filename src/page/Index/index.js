@@ -12,6 +12,7 @@ import TitleBar from "../titleBar"
 import Banner from '../../common/banner';
 import Qrcode from "../../common/qrcode"
 import Mycode from "../mycode"
+import Rembur from "../rembur"
 //工具类
 import fetch from "../../common/util/fetch"
 
@@ -74,7 +75,23 @@ export default class extends React.Component {
         navigate("Qrcode")*/
     }
 
-    toMyQrcode(){
+    /**
+     * 我要报账
+     */
+    toRember(){
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'rembur',
+                component: Rembur,
+            })
+        }
+    }
+
+    /**
+     * 我的收款码
+     */
+    toMyQrcode() {
         const {navigator} = this.props;
         if (navigator) {
             navigator.push({
@@ -153,7 +170,9 @@ export default class extends React.Component {
                 </View>
                 <View style={styles.toolLine}/>
                 <View style={styles.tool}>
-                    <Image style={styles.toolImage} source={bus_want}/>
+                    <TouchableOpacity onPress={this.toRember.bind(this)}>
+                        <Image style={styles.toolImage} source={bus_want}/>
+                    </TouchableOpacity>
                     <Text style={styles.toolText}>
                         我要报账
                     </Text>
