@@ -53,9 +53,6 @@ class Thumb extends React.Component {
                 component: Login,
             })
         }
-        //新版本路由
-        /* const {navigate} = this.props.navigation;
-         navigate("Login")*/
     }
     render() {
         if (this.props.index == THUMBS.length - 1) {

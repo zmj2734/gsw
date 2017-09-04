@@ -33,20 +33,21 @@ export default class extends React.Component {
     render() {
         let widthStyle = 100 / 3;
         return (
-            <View style={[styles.tabBackground,this.props.style]}>
-                <View style={{width: widthStyle + "%", justifyContent: "center", marginLeft: 10}}>
+            <View style={[styles.tabBackground, this.props.style]}>
+                <View style={{width: widthStyle + "%", justifyContent: "center", marginLeft: 15}}>
                     <TouchableOpacity onPress={this.leftonPress.bind(this)}>
                         {this.props.leftIcon ?
                             <Image source={this.props.leftIcon} style={{width: 40, height: 30}}/> : null}
-                        {this.props.leftTitle ? <Text style={[{fontSize: 16},this.props.titleStyle]}>{this.props.leftTitle}</Text> : null}
+                        {this.props.leftTitle ? <Text
+                            style={[{fontSize: 16}, this.props.titleStyle, this.props.rightTitleStyle]}>{this.props.leftTitle}</Text> : null}
                     </TouchableOpacity>
                 </View>
                 <View style={{width: widthStyle + "%", justifyContent: "center", alignItems: "center"}}>
-                    <Text style={[{fontSize: 16},this.props.titleStyle]}>
+                    <Text style={[{fontSize: 16}, this.props.titleStyle]}>
                         {this.props.centerTitle}
                     </Text>
                 </View>
-                <View style={{width: widthStyle + "%", justifyContent: "center", marginRight: 10, left: 0}}>
+                <View style={{width: widthStyle + "%", justifyContent: "center", marginRight: 15, left: 0}}>
                     <TouchableOpacity onPress={this.rightonPress.bind(this)}>
                         {this.props.rightIcon ?
                             <Image source={this.props.rightIcon} style={{width: 40, height: 40}}/> : null}
@@ -55,7 +56,7 @@ export default class extends React.Component {
                                 width: "100%",
                                 textAlign: "right",
                                 fontSize: 16
-                            },this.props.titleStyle]}>{this.props.rightTitle}</Text> : null}
+                            }, this.props.titleStyle, this.props.rightTitleStyle]}>{this.props.rightTitle}</Text> : null}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -64,11 +65,11 @@ export default class extends React.Component {
 }
 
 let styles = StyleSheet.create({
-    tabBackground : {
+    tabBackground: {
         width: "100%",
         height: 40,
         backgroundColor: "white",
         justifyContent: "space-around",
-        flexDirection: "row"
+        flexDirection: "row",
     }
 })

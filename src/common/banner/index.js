@@ -68,7 +68,6 @@ export default class extends React.Component {
                 this.currentIndex = 0;
             }
             this.scrollView.scrollTo({x:this.currentIndex * this.props.screenWidth,y:0,animated:true});
-            this.points() ;
             this.setState({selectedImageIndex : this.currentIndex})
         }.bind(this), 3000);
     }
@@ -79,7 +78,6 @@ export default class extends React.Component {
     onScroll(e){
         this.contentOffsetX = e.nativeEvent.contentOffset.x;
         this.currentIndex = Math.round(this.contentOffsetX / this.props.screenWidth);
-        this.points() ;
         this.setState({selectedImageIndex : this.currentIndex})
     }
 

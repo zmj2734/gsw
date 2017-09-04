@@ -48,27 +48,24 @@ export default class extends React.Component{
                         title="商家"
                         renderIcon={() => <Image source={merchant} style={styles.image}/>}
                         renderSelectedIcon={() => <Image source={merchant_selected} style={styles.image}/>}
-                        //renderBadge={() => <CustomBadgeView />}
                         onPress={() => this.setState({ selectedTab: "merchant" })}>
-                        <MerchantView/>
+                        <MerchantView {...this.props}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === "message"}
                         title="消息"
                         renderIcon={() => <Image source={message} style={styles.image}/>}
                         renderSelectedIcon={() => <Image source={message_selected} style={styles.image}/>}
-                        //renderBadge={() => <CustomBadgeView />}
                         onPress={() => this.setState({ selectedTab: "message" })}>
-                        <MessageView/>
+                        <MessageView {...this.props}/>
                     </TabNavigator.Item>
                     <TabNavigator.Item
                         selected={this.state.selectedTab === "mine"}
                         title="我的"
                         renderIcon={() => <Image source={mine} style={styles.image}/>}
                         renderSelectedIcon={() => <Image source={mine_selected} style={styles.image}/>}
-                        //renderBadge={() => <CustomBadgeView />}
                         onPress={() => this.setState({ selectedTab: "mine" })}>
-                       <MeView/>
+                       <MeView {...this.props}/>
                     </TabNavigator.Item>
                 </TabNavigator>
             </View>

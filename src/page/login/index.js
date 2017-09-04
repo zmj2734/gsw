@@ -71,7 +71,7 @@ export default class extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{width:"90%",height:1,backgroundColor:"#e2e2e2"}}/>
-                    <View style={{flexDirection:"row",height:40,alignItems:"center"}}>
+                    <View style={{flexDirection:"row",height:40,alignItems:"center",justifyContent:"flex-start"}}>
                         <CheckBox checked={this.state.isChecked}
                                   onChange={this.isChecked.bind(this)}
                                   checkboxStyle = {{width:15,height:15,resizeMode: "stretch",marginTop:5}}

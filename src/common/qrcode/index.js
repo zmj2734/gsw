@@ -19,7 +19,7 @@ export default class extends React.Component {
     constructor(){
         super()
         this.state = {
-            imageUri : "",
+            imageUri : null,
             camera : null
         }
     }
@@ -105,8 +105,6 @@ export default class extends React.Component {
                 _this.setState({
                     imageUri : response.uri
                 }) ;
-                options.location = response.uri ;
-
             }
         })
     }

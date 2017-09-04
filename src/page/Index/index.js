@@ -70,9 +70,6 @@ export default class extends React.Component {
                 }
             })
         }
-        //新版本路由
-        /*const {navigate} = this.props.navigation;
-        navigate("Qrcode")*/
     }
 
     /**
