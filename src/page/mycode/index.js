@@ -6,7 +6,7 @@ import {
 } from "react-native"
 
 import TitleBar from "../titleBar"
-
+let leftIcon = require("../../resources/images/home/back_black.png") ;
 let defaultCode = require("../../resources/images/mine/myqrcode.png");
 
 
@@ -34,7 +34,7 @@ export default class extends React.Component {
             <View style={{flex: 1}}>
                 <TitleBar
                     centerTitle="我的收款码"
-                    leftTitle="＜"
+                    leftIcon={leftIcon}
                     leftonPress={this.doBack.bind(this)}
                 />
                 <View style={styles.main}>

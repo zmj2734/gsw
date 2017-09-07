@@ -8,7 +8,7 @@ import {
     TouchableWithoutFeedback,
     Text,
     ActivityIndicator,
-    BackAndroid,
+    BackHandler
 } from 'react-native';
 import styles from "./index.css" ;
 export default class webview extends React.Component {
@@ -96,14 +96,14 @@ export default class webview extends React.Component {
     componentWillMount() {
         //添加监听事件  android平台 说明：BackAndroid在iOS平台下是一个空实现，所以理论上不做这个Platform.OS === 'android'判断也是安全的。
         //if (Platform.OS === 'android') {
-        BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid.bind(this));
+        BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid.bind(this));
         //}
     }
 
     componentWillUnmount() {
         //移除监听事件  android平台 说明：BackAndroid在iOS平台下是一个空实现，所以理论上不做这个Platform.OS === 'android'判断也是安全的。
         //if (Platform.OS === 'android') {
-        BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
         //}
     }
 

@@ -37,7 +37,7 @@ export default class extends React.Component {
                 <View style={{width: widthStyle + "%", justifyContent: "center", marginLeft: 15}}>
                     <TouchableOpacity onPress={this.leftonPress.bind(this)}>
                         {this.props.leftIcon ?
-                            <Image source={this.props.leftIcon} style={{width: 40, height: 30}}/> : null}
+                            <Image source={this.props.leftIcon} style={{width: 8, height: 13}}/> : null}
                         {this.props.leftTitle ? <Text
                             style={[{fontSize: 16}, this.props.titleStyle, this.props.rightTitleStyle]}>{this.props.leftTitle}</Text> : null}
                     </TouchableOpacity>
@@ -50,7 +50,7 @@ export default class extends React.Component {
                 <View style={{width: widthStyle + "%", justifyContent: "center", marginRight: 15, left: 0}}>
                     <TouchableOpacity onPress={this.rightonPress.bind(this)}>
                         {this.props.rightIcon ?
-                            <Image source={this.props.rightIcon} style={{width: 40, height: 40}}/> : null}
+                            <Image source={this.props.rightIcon} style={{width: 8, height: 13}}/> : null}
                         {this.props.rightTitle ? <Text
                             style={[{
                                 width: "100%",

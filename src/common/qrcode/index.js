@@ -8,7 +8,7 @@ import {
 import Styles from "./index.css"
 import ImageButton from "./imageButton"
 
-let back = require("../../resources/images/qrcode/qqback.png");
+let back = require("../../resources/images/qrcode/wechatBack.png");
 let lightOn = require("../../resources/images/qrcode/qrcodeLigthOn.png");
 
 import {QRScannerView} from 'ac-qrcode';
@@ -46,10 +46,10 @@ export default class extends React.Component {
                 <ImageButton
                     onPress={this.back.bind(this)}
                     source={back}
-                    style={{height: 32, width: 32, resizeMode: 'contain', marginLeft: 16}}
+                    style={{height: 32, width: 32, resizeMode: 'contain', marginHorizontal: 5}}
                 />
                 <Text
-                    style={{color: "white", fontSize: 18, marginLeft: 30}}
+                    style={{color: "white", fontSize: 18, paddingLeft: 15,borderLeftWidth:1,borderLeftColor:"#c8c8c8"}}
                 >二维码/条码</Text>
             </View>
         )

@@ -2,7 +2,9 @@ import React from "react"
 import {
     View,
     Text,
-    Image
+    Image,
+    ActivityIndicator,
+    InteractionManager
 } from "react-native"
 import List from "../../common/listView"
 
@@ -12,14 +14,45 @@ export default class extends React.Component{
     static navigationOptions = {
         tabBarLabel: '排队中',
     };
-    constructor(){
-        super() ;
+    constructor() {
+        super();
         this.data = {
-            code : 0 ,
-            data : [
-                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+            code: 0,
+            data: [
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
             ]
-        }
+        } ;
+        this.listView = this.createListView() ;
+        this.state = {
+            modalVisible: false,
+            loadVisible : true,
+            mainView : this.initView()
+        } ;
+    }
+    componentDidMount(){
+        const _this = this ;
+        InteractionManager.runAfterInteractions(()=>{
+            _this.setState({
+                loadVisible : false ,
+                mainView : _this.listView
+            })
+        })
+    }
+
+    initView(){
+        return(
+            <View style={{flex:1}}>
+                <ActivityIndicator style={{flex:1}} />
+            </View>
+        )
+    }
+
+    createListView(){
+        return (
+            <List
+                renderItem={this.renderItem.bind(this)} data={this.data}
+            />
+        )
     }
 
     renderItem(data){
@@ -71,9 +104,7 @@ export default class extends React.Component{
     render(){
         return(
             <View style={{flex:1}}>
-                <List
-                    renderItem = {this.renderItem.bind(this)} data={this.data}
-                />
+                {this.state.mainView}
             </View>
         )
     }

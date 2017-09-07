@@ -4,7 +4,9 @@ import {
     Text,
     Image,
     TouchableOpacity,
-    Modal
+    Modal,
+    ActivityIndicator,
+    InteractionManager
 } from "react-native"
 import List from "../../common/listView"
 
@@ -23,10 +25,39 @@ export default class extends React.Component {
             data: [
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
             ]
-        }
+        } ;
+        this.listView = this.createListView() ;
         this.state = {
-            modalVisible: false
-        }
+            modalVisible: false,
+            loadVisible : true,
+            mainView : this.initView()
+        } ;
+    }
+    componentDidMount(){
+        const _this = this ;
+        InteractionManager.runAfterInteractions(()=>{
+            _this.setState({
+                loadVisible : false ,
+                mainView : _this.listView
+            })
+        })
+    }
+
+    initView(){
+        return(
+            <View style={{flex:1}}>
+                <ActivityIndicator style={{flex:1}} />
+            </View>
+        )
+    }
+
+
+    createListView(){
+        return (
+            <List
+                renderItem={this.renderItem.bind(this)} data={this.data}
+            />
+        )
     }
 
     dial() {
@@ -105,9 +136,7 @@ export default class extends React.Component {
     render() {
         return (
             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-                <List
-                    renderItem={this.renderItem.bind(this)} data={this.data}
-                />
+                {this.state.mainView}
             </View>
         )
     }

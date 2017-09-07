@@ -9,7 +9,7 @@ import TitleBar from "../titleBar"
 import NoChowLine from "./list1"
 import ChowLine from "./list2"
 import Completed from "./list3"
-
+let leftIcon = require("../../resources/images/home/back_black.png") ;
 const MyTabNavigator = TabNavigator(
     {
         NoChowLine: {screen: NoChowLine},
@@ -50,7 +50,7 @@ export default class extends Component {
         return (
             <View style={styles.main}>
                 <TitleBar
-                    leftTitle="<"
+                    leftIcon = {leftIcon}
                     centerTitle="我的报账"
                     rightTitle="我要报账"
                     rightTitleStyle={styles.rightTitleStyle}
