@@ -22,19 +22,17 @@ export default class extends React.Component{
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
             ]
         } ;
-        this.listView = this.createListView() ;
         this.state = {
             modalVisible: false,
             loadVisible : true,
-            mainView : this.initView()
         } ;
     }
     componentDidMount(){
         const _this = this ;
         InteractionManager.runAfterInteractions(()=>{
+            _this.listView = this.createListView() ;
             _this.setState({
                 loadVisible : false ,
-                mainView : _this.listView
             })
         })
     }
@@ -104,7 +102,11 @@ export default class extends React.Component{
     render(){
         return(
             <View style={{flex:1}}>
-                {this.state.mainView}
+                {this.state.loadVisible?
+                    <View style={{flex:1}}><ActivityIndicator style={{flex:1}} animating={this.state.loadVisible}  /></View>
+                    :
+                    this.createListView()
+                }
             </View>
         )
     }

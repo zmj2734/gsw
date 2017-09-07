@@ -9,30 +9,35 @@ import TitleBar from "../titleBar"
 import NoChowLine from "./list1"
 import ChowLine from "./list2"
 import Completed from "./list3"
-let leftIcon = require("../../resources/images/home/back_black.png") ;
-const MyTabNavigator = TabNavigator(
-    {
-        NoChowLine: {screen: NoChowLine},
-        ChowLine: {screen: ChowLine},
-        Completed: {screen: Completed},
-    }, {
-        tabBarOptions: {
-            initialRouteName: 'NoChowLine',
-            swipeEnabled: "true",
-            animationEnabled: "true",
-            tabBarPosition: "top",
-        }
-    })
+
+let leftIcon = require("../../resources/images/home/back_black.png");
 
 export default class extends Component {
-    constructor() {
-        super();
+    static defaultProps = {
+        selectedIndex: 1
+    };
+
+    constructor(props) {
+        super(props);
         this.state = {
-            selectIndex : 1 ,
-            leftStyle : styles.selected ,
-            centerStyle : styles.centerHit ,
-            rightStyle : styles.hit
-        }
+            leftStyle: styles.selected,
+            centerStyle: styles.centerHit,
+            rightStyle: styles.hit
+        };
+        const selectNav = ["NoChowLine", "ChowLine", "Completed"];
+        this.MyTabNavigator = TabNavigator(
+            {
+                NoChowLine: {screen: NoChowLine},
+                ChowLine: {screen: ChowLine},
+                Completed: {screen: Completed},
+            }, {
+                initialRouteName: selectNav[props.selectedIndex],
+                tabBarOptions: {
+                    swipeEnabled: "true",
+                    animationEnabled: "true",
+                    tabBarPosition: "top",
+                }
+            })
     }
 
     doBack() {
@@ -50,7 +55,7 @@ export default class extends Component {
         return (
             <View style={styles.main}>
                 <TitleBar
-                    leftIcon = {leftIcon}
+                    leftIcon={leftIcon}
                     centerTitle="我的报账"
                     rightTitle="我要报账"
                     rightTitleStyle={styles.rightTitleStyle}
@@ -58,7 +63,7 @@ export default class extends Component {
                     rightonPress={this.reimbur.bind(this)}
                 />
                 <View style={[styles.main, {marginTop: 1, backgroundColor: "white"}]}>
-                   <MyTabNavigator {...this.props}/>
+                    <this.MyTabNavigator {...this.props}/>
                 </View>
             </View>
         )
@@ -76,18 +81,18 @@ let styles = {
     },
     hit: {
         flex: 1,
-        height:"100%" ,
-        justifyContent:"center",
-        alignItems:"center" ,
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
         backgroundColor: "white",
         borderBottomWidth: 0.5,
         borderBottomColor: "#E6E6E6"
     },
     selected: {
         flex: 1,
-        height:"100%" ,
-        alignItems:"center" ,
-        justifyContent:"center",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "#007aff",
         borderBottomWidth: 0.5,
         borderBottomColor: "#007aff",
@@ -95,29 +100,29 @@ let styles = {
     },
     centerHit: {
         flex: 1,
-        height:"100%" ,
-        alignItems:"center" ,
-        justifyContent:"center",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "white",
         borderBottomWidth: 0.5,
         borderBottomColor: "#E6E6E6",
-        borderLeftWidth:0.5,
-        borderLeftColor:"#E6E6E6",
-        borderRightWidth:0.5 ,
-        borderRightColor:"#E6E6E6"
+        borderLeftWidth: 0.5,
+        borderLeftColor: "#E6E6E6",
+        borderRightWidth: 0.5,
+        borderRightColor: "#E6E6E6"
     },
     centerSelected: {
         flex: 1,
-        height:"100%" ,
-        alignItems:"center" ,
-        justifyContent:"center",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "#007aff",
         borderBottomWidth: 0.5,
         borderBottomColor: "#007aff",
-        borderLeftWidth:0.5,
-        borderLeftColor:"#007aff",
-        borderRightWidth:0.5 ,
-        borderRightColor:"#007aff",
+        borderLeftWidth: 0.5,
+        borderLeftColor: "#007aff",
+        borderRightWidth: 0.5,
+        borderRightColor: "#007aff",
         color: "white"
     }
 

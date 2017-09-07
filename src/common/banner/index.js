@@ -7,7 +7,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     Dimensions,
-    Animated
+    Animated,
+    InteractionManager
 } from "react-native"
 
 export default class extends React.Component {
@@ -34,7 +35,9 @@ export default class extends React.Component {
     }
 
     componentDidMount(){
-        this.runFocusImage() ;
+        InteractionManager.runAfterInteractions(()=>{
+            this.runFocusImage() ;
+        })
     }
 
     /**

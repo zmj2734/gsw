@@ -4,11 +4,12 @@ import {
     Text,
     Image,
     TouchableOpacity,
-    Modal,
     ActivityIndicator,
     InteractionManager
 } from "react-native"
 import List from "../../common/listView"
+import Communications from 'react-native-communications'
+import LookImage from "./lookImage"
 
 let icon = require("../../resources/images/acount/no_group.png");
 let modalCloseIcon = require("../../resources/images/profit/close-fp.png")
@@ -25,34 +26,26 @@ export default class extends React.Component {
             data: [
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
             ]
-        } ;
-        this.listView = this.createListView() ;
+        };
+        this.lookImage = [{url: "http://avatar.csdn.net/1/C/1/1_sinat_17775997.jpg"}];
         this.state = {
             modalVisible: false,
-            loadVisible : true,
-            mainView : this.initView()
-        } ;
+            loadVisible: true,
+            onClosingState: false
+        };
     }
-    componentDidMount(){
-        const _this = this ;
-        InteractionManager.runAfterInteractions(()=>{
+
+    componentDidMount() {
+        const _this = this;
+        InteractionManager.runAfterInteractions(() => {
+            _this.listView = this.createListView();
             _this.setState({
-                loadVisible : false ,
-                mainView : _this.listView
+                loadVisible: false,
             })
         })
     }
 
-    initView(){
-        return(
-            <View style={{flex:1}}>
-                <ActivityIndicator style={{flex:1}} />
-            </View>
-        )
-    }
-
-
-    createListView(){
+    createListView() {
         return (
             <List
                 renderItem={this.renderItem.bind(this)} data={this.data}
@@ -60,20 +53,24 @@ export default class extends React.Component {
         )
     }
 
-    dial() {
-        alert(1)
+    dial(phone) {
+        Communications.phonecall(phone, true)
     }
 
     openModal() {
-        this.setState({
-            modalVisible: true
-        })
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'lookImage',
+                component: LookImage,
+                params: {
+                    lookImage : this.lookImage
+                }
+            })
+        }
     }
 
     modalClose() {
-        this.setState({
-            modalVisible: false
-        })
     }
 
     renderItem(data) {
@@ -118,8 +115,9 @@ export default class extends React.Component {
                             <Text style={{fontSize: 12, marginBottom: 2}}>代理商家：<Text
                                 style={{color: "red"}}>重庆小淘淘户外用具店</Text></Text>
                             <Text style={{fontSize: 12, marginBottom: 2}}>代报账号：<Text
-                                style={{color: "red"}}>15000000009</Text><Text style={{fontSize: 13, color: "black"}}
-                                                                               onPress={this.dial.bind(this)}>
+                                style={{color: "red"}}>15000000009</Text><Text
+                                style={{fontSize: 13, color: "black", marginLeft: 10}}
+                                onPress={this.dial.bind(this, "15000000009")}>
                                 点击拨打</Text></Text>
                             <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                 <Text style={{fontSize: 12, marginBottom: 2}}>等待处理</Text><Text
@@ -136,7 +134,12 @@ export default class extends React.Component {
     render() {
         return (
             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-                {this.state.mainView}
+                {this.state.loadVisible ?
+                    <View style={{flex: 1}}><ActivityIndicator style={{flex: 1}}
+                                                               animating={this.state.loadVisible}/></View>
+                    :
+                    this.createListView()
+                }
             </View>
         )
     }

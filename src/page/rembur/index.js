@@ -59,6 +59,9 @@ export default class extends React.Component {
             navigator.push({
                 name: 'myAccountList',
                 component: MyAccountList,
+                params : {
+                    selectedIndex : 0
+                }
             })
         }
     }

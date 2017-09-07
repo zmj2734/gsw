@@ -13,6 +13,7 @@ import Banner from '../../common/banner';
 import Qrcode from "../../common/qrcode"
 import Mycode from "../mycode"
 import Rembur from "../rembur"
+import MyAccountList from "../rembur/my_account_list"
 //工具类
 import fetch from "../../common/util/fetch"
 
@@ -75,7 +76,7 @@ export default class extends React.Component {
     /**
      * 我要报账
      */
-    toRember(){
+    toRember() {
         const {navigator} = this.props;
         if (navigator) {
             navigator.push({
@@ -93,7 +94,55 @@ export default class extends React.Component {
         if (navigator) {
             navigator.push({
                 name: 'mycode',
-                component: Mycode,
+                component: Mycode
+            })
+        }
+    }
+
+    /**
+     * 跳转排队信息
+     */
+    toNoGroup() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'myAccountList',
+                component: MyAccountList,
+                params: {
+                    selectedIndex: 0
+                }
+            })
+        }
+    }
+
+    /**
+     * 跳转排队信息
+     */
+    toInGroup() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'myAccountList',
+                component: MyAccountList,
+                params: {
+                    selectedIndex: 1
+                }
+            })
+        }
+    }
+
+    /**
+     * 跳转排队信息
+     */
+    toFinnish() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'myAccountList',
+                component: MyAccountList,
+                params: {
+                    selectedIndex: 2
+                }
             })
         }
     }
@@ -192,20 +241,25 @@ export default class extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.acount_line1}/>
-                <View style={styles.acount_view2}>
-                    <View style={styles.acount_view2_children}>
-                        <Image style={styles.acount_img1} source={require("../../resources/images/home/nogroup.png")}/>
-                        <Text style={styles.acount_text2}>
-                            未排队
-                        </Text>
+                <TouchableOpacity onPress={this.toNoGroup.bind(this)} activeOpacity={0.5}>
+                    <View style={styles.acount_view2}>
+                        <View style={styles.acount_view2_children}>
+                            <Image style={styles.acount_img1}
+                                   source={require("../../resources/images/home/nogroup.png")}/>
+                            <Text style={styles.acount_text2}>
+                                未排队
+                            </Text>
+                        </View>
+                        <View style={[styles.acount_view2_children, {justifyContent: "flex-end"}]}>
+                            <Text style={styles.acount_text2}>
+                                0 张
+                            </Text>
+                            <Image style={styles.acount_img2}
+                                   source={require("../../resources/images/default/right.png")}/>
+                        </View>
                     </View>
-                    <View style={[styles.acount_view2_children, {justifyContent: "flex-end"}]}>
-                        <Text style={styles.acount_text2}>
-                            0 张
-                        </Text>
-                        <Image style={styles.acount_img2} source={require("../../resources/images/default/right.png")}/>
-                    </View>
-                </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.toInGroup.bind(this)} activeOpacity={0.5}>
                 <View style={styles.acount_view2}>
                     <View style={styles.acount_view2_children}>
                         <Image style={styles.acount_img1} source={require("../../resources/images/home/ingroup.png")}/>
@@ -220,6 +274,8 @@ export default class extends React.Component {
                         <Image style={styles.acount_img2} source={require("../../resources/images/default/right.png")}/>
                     </View>
                 </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.toFinnish.bind(this)} activeOpacity={0.5}>
                 <View style={styles.acount_view2}>
                     <View style={styles.acount_view2_children}>
                         <Image style={styles.acount_img1} source={require("../../resources/images/home/finnish.png")}/>
@@ -234,6 +290,7 @@ export default class extends React.Component {
                         <Image style={styles.acount_img2} source={require("../../resources/images/default/right.png")}/>
                     </View>
                 </View>
+                </TouchableOpacity>
             </View>
             <View style={styles.bannerView}>
                 <View style={[styles.banner, this.iosMarginTop]}>
