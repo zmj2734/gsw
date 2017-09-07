@@ -14,7 +14,7 @@ import {
 import TitleBar from "../titleBar"
 import Button from "../../common/button"
 import ImagePicker from "react-native-image-picker"
-import MyAccountList from "./my_account_list"
+import FindPeople from "./findPeople"
 
 let leftIcon = require("../../resources/images/home/back_black.png");
 let defaultImage = require("../../resources/images/bus_info/icon-img-fp.png");
@@ -57,11 +57,8 @@ export default class extends React.Component {
         const {navigator} = this.props;
         if (navigator) {
             navigator.push({
-                name: 'myAccountList',
-                component: MyAccountList,
-                params : {
-                    selectedIndex : 0
-                }
+                name: 'findPeople',
+                component: FindPeople
             })
         }
     }
