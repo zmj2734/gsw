@@ -5,14 +5,18 @@ import {
     Image,
     TouchableOpacity,
     ActivityIndicator,
-    InteractionManager
+    InteractionManager,
+    Dimensions,
+    StyleSheet,
+    Button,
+    ScrollView
 } from "react-native"
 import List from "../../common/listView"
 import Communications from 'react-native-communications'
-import LookImage from "./lookImage"
+import Modal from 'react-native-modalbox';
 
 let icon = require("../../resources/images/acount/no_group.png");
-let modalCloseIcon = require("../../resources/images/profit/close-fp.png")
+let modalCloseIcon = require("../../resources/images/profit/close-fp.png") ;
 
 export default class extends React.Component {
     static navigationOptions = {
@@ -27,7 +31,7 @@ export default class extends React.Component {
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
             ]
         };
-        this.lookImage = [{url: "http://avatar.csdn.net/1/C/1/1_sinat_17775997.jpg"}];
+        this.lookImage = "http://img1.3lian.com/2015/a1/53/d/198.jpg";
         this.state = {
             modalVisible: false,
             loadVisible: true,
@@ -58,19 +62,11 @@ export default class extends React.Component {
     }
 
     openModal() {
-        const {navigator} = this.props;
-        if (navigator) {
-            navigator.push({
-                name: 'lookImage',
-                component: LookImage,
-                params: {
-                    lookImage : this.lookImage
-                }
-            })
-        }
+        this.modal.open();
     }
 
     modalClose() {
+        this.modal.close();
     }
 
     renderItem(data) {
@@ -117,13 +113,15 @@ export default class extends React.Component {
                             <Text style={{fontSize: 12, marginBottom: 2}}>代报账号：<Text
                                 style={{color: "red"}}>15000000009</Text><Text
                                 style={{fontSize: 13, color: "black", marginLeft: 10}}
-                                onPress={this.dial.bind(this, "15000000009")}>
-                                点击拨打</Text></Text>
+                                onPress={this.dial.bind(this, "15000000009")}>    点击拨打</Text></Text>
                             <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                                 <Text style={{fontSize: 12, marginBottom: 2}}>等待处理</Text><Text
-                                style={{color: "#0098E6"}} onPress={this.openModal.bind(this)}>发票</Text>
+                                style={{color: "#0098E6"}} onPress={this.openModal.bind(this)}>查看发票</Text>
                             </View>
                         </View>
+                    </View>
+                    <View style={{justifyContent:"center",alignItems:"center",height:35,width:"100%",borderTopColor:"#eee",borderTopWidth:0.5}}>
+                        <Text style={{color:"red"}} onPress = {()=> alert("取消了订单")}>取消订单</Text>
                     </View>
                 </View>
                 <Image style={{width: 80, height: 80, position: "absolute", right: 10, top: 35}} source={icon}/>
@@ -132,15 +130,27 @@ export default class extends React.Component {
     }
 
     render() {
+        let BContent = <Button onPress={this.modalClose.bind(this)} style={[styles.btn, styles.btnModal]} title="X"/>;
         return (
-            <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+            <View style={{flex: 1}}>
                 {this.state.loadVisible ?
                     <View style={{flex: 1}}><ActivityIndicator style={{flex: 1}}
                                                                animating={this.state.loadVisible}/></View>
                     :
                     this.createListView()
                 }
+                <Modal style={[styles.modal]} position={"center"} ref={(mod) => this.modal = mod}>
+                        <Image source={{uri: this.lookImage, width: "100%",height:"100%"}} style={{flex: 1,resizeMode:"contain"}}/>
+                </Modal>
             </View>
         )
     }
 }
+const styles = StyleSheet.create({
+    modal: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: "60%",
+        width: "70%"
+    }
+})

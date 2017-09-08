@@ -32,8 +32,23 @@ export default class extends React.Component {
                     leftonPress={this.doBack.bind(this)}
                 />
                 <View style={styles.sreachView}>
-                    <TextInput style={styles.sreachInput} underlineColorAndroid="transparent" placeholder="请输入商家电话号码" />
+                    <TextInput style={styles.sreachInput} underlineColorAndroid="transparent" placeholder="请输入代报商家电话号码" />
                     <Button style={styles.sreachButton} title="搜索" onPress={this.doSearch.bind(this)}/>
+                </View>
+                <View>
+                    <View style={{height:35}}>
+                        <Text style={{}}>
+                            你的历史代报商家
+                        </Text>
+                    </View>
+
+                </View>
+                <View>
+                    <View>
+                        <Text>
+                            系统推荐商家
+                        </Text>
+                    </View>
                 </View>
             </View>
         )

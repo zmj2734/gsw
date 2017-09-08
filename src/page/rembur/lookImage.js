@@ -20,7 +20,7 @@ export default class extends React.Component {
     }
     render() {
         return (
-            <View>
+            <View style={{position:"absolute",flex:1}}>
                 <TitleBar
                     centerTitle="图片查看"
                     leftIcon={leftIcon}
