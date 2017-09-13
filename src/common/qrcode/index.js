@@ -2,17 +2,17 @@ import React from "react"
 import {
     View,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    InteractionManager
 } from "react-native"
 
 import Styles from "./index.css"
 import ImageButton from "./imageButton"
+import {QRScannerView} from 'ac-qrcode';
+import ImagePicker from "react-native-image-picker"
 
 let back = require("../../resources/images/qrcode/wechatBack.png");
 let lightOn = require("../../resources/images/qrcode/qrcodeLigthOn.png");
-
-import {QRScannerView} from 'ac-qrcode';
-import ImagePicker from "react-native-image-picker"
 
 export default class extends React.Component {
 
@@ -20,13 +20,21 @@ export default class extends React.Component {
         super()
         this.state = {
             imageUri : null,
-            camera : null
+            camera : null,
+            QRScannerView :null
         }
     }
 
-    render() {
-        return (
-            <View style={{flex:1,backgroundColor:"white"}} >
+    componentDidMount(){
+        InteractionManager.runAfterInteractions(()=>{
+            this.setState({
+                QRScannerView : this.createView()
+            })
+        })
+    }
+
+    createView(){
+        return(
             < QRScannerView
                 ref = {(qr) => this.qrscanner = qr}
                 onScanResultReceived
@@ -36,6 +44,13 @@ export default class extends React.Component {
                 renderBottomMenuView
                     ={() => this._renderMenu()}
             />
+        )
+    }
+
+    render() {
+        return (
+            <View style={{flex:1,backgroundColor:"white"}} >
+                {this.state.QRScannerView}
             </View>
         )
     }
