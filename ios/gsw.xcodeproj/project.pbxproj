@@ -38,6 +38,7 @@
 		49A67589D62D4148B3ED92F3 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0241457A1C84FE2AD45FEFC /* libSplashScreen.a */; };
 		E2D3D44E3DB14C8B96354E6B /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA52C94514134AB1A042A3EB /* libRCTCamera.a */; };
 		7C79C248B53C446C846D8900 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3509A822E2D142BD954D42C2 /* libRNImagePicker.a */; };
+		3F8E2DB044114CC3BB4F72BB /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 367BCBE8CA554CCDB3587884 /* libimageCropPicker.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +264,8 @@
 		FA52C94514134AB1A042A3EB /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		BB4200D353404C0586921C84 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		3509A822E2D142BD954D42C2 /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		D1F02A787AE048D48AB8126E /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "imageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		367BCBE8CA554CCDB3587884 /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +295,7 @@
 				49A67589D62D4148B3ED92F3 /* libSplashScreen.a in Frameworks */,
 				E2D3D44E3DB14C8B96354E6B /* libRCTCamera.a in Frameworks */,
 				7C79C248B53C446C846D8900 /* libRNImagePicker.a in Frameworks */,
+				3F8E2DB044114CC3BB4F72BB /* libimageCropPicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +465,7 @@
 				91F906450B02454BA1541D09 /* SplashScreen.xcodeproj */,
 				C1BDA175BEC24BCFA83AB1ED /* RCTCamera.xcodeproj */,
 				BB4200D353404C0586921C84 /* RNImagePicker.xcodeproj */,
+				D1F02A787AE048D48AB8126E /* imageCropPicker.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -991,12 +996,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Debug;
@@ -1020,12 +1027,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Release;
@@ -1050,6 +1059,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Debug;
@@ -1073,6 +1083,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Release;
@@ -1105,12 +1116,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Debug;
@@ -1143,12 +1156,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Release;
@@ -1176,6 +1191,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1200,6 +1216,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

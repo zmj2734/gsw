@@ -35,16 +35,16 @@ export default class extends React.Component {
         this.state = {
             modalVisible: false,
             loadVisible: true,
-            onClosingState: false
+            onClosingState: false,
+            listView : null
         };
     }
 
     componentDidMount() {
-        const _this = this;
         InteractionManager.runAfterInteractions(() => {
-            _this.listView = this.createListView();
-            _this.setState({
+            this.setState({
                 loadVisible: false,
+                listView : this.createListView()
             })
         })
     }
@@ -133,11 +133,11 @@ export default class extends React.Component {
         let BContent = <Button onPress={this.modalClose.bind(this)} style={[styles.btn, styles.btnModal]} title="X"/>;
         return (
             <View style={{flex: 1}}>
-                {this.state.loadVisible ?
-                    <View style={{flex: 1}}><ActivityIndicator style={{flex: 1}}
+                {this.state.listView ?
+                    <View style={{flex: 1}}><ActivityIndicator style={{flex: 1}} size="large"
                                                                animating={this.state.loadVisible}/></View>
                     :
-                    this.createListView()
+                    this.state.listView
                 }
                 <Modal style={[styles.modal]} position={"center"} ref={(mod) => this.modal = mod}>
                         <Image source={{uri: this.lookImage, width: "100%",height:"100%"}} style={{flex: 1,resizeMode:"contain"}}/>
