@@ -3,7 +3,8 @@ import {
     View,
     Text,
     TouchableOpacity,
-    InteractionManager
+    InteractionManager,
+    ActivityIndicator
 } from "react-native"
 
 import Styles from "./index.css"
@@ -16,19 +17,21 @@ let lightOn = require("../../resources/images/qrcode/qrcodeLigthOn.png");
 
 export default class extends React.Component {
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             imageUri : null,
             camera : null,
-            QRScannerView :null
+            QRScannerView :null,
+            loading : true
         }
     }
 
     componentDidMount(){
         InteractionManager.runAfterInteractions(()=>{
             this.setState({
-                QRScannerView : this.createView()
+                QRScannerView : this.createView(),
+                loading : false
             })
         })
     }
@@ -49,8 +52,11 @@ export default class extends React.Component {
 
     render() {
         return (
-            <View style={{flex:1,backgroundColor:"white"}} >
-                {this.state.QRScannerView}
+            <View style={{flex:1,backgroundColor:"#eee"}} >
+                {this.state.QRScannerView?
+                    <ActivityIndicator size="large" animating={this.state.loading} />:
+                      this.createView()
+                }
             </View>
         )
     }
