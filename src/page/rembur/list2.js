@@ -102,7 +102,7 @@ export default class extends React.Component{
     render(){
         return(
             <View style={{flex:1}}>
-                {this.state.listView ?
+                {this.state.loadVisible ?
                     <View style={{flex: 1}}><ActivityIndicator style={{flex: 1}} size="large"
                                                                animating={this.state.loadVisible}/></View>
                     :

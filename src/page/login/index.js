@@ -71,17 +71,17 @@ export default class extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{width:"90%",height:1,backgroundColor:"#e2e2e2"}}/>
-                    <View style={{flexDirection:"row",height:40,alignItems:"center",justifyContent:"flex-start"}}>
+                    <View style={{flexDirection:"row",height:40,alignItems:"center",justifyContent:"flex-start",marginLeft:-30}}>
                         <CheckBox checked={this.state.isChecked}
                                   onChange={this.isChecked.bind(this)}
                                   checkboxStyle = {{width:15,height:15,resizeMode: "stretch",marginTop:5}}
                                   containerStyle = {{paddingHorizontal:1,marginHorizontal:1}}
                                   label=""/>
-                        <Text style={{marginLeft:-15}}>
+                        <Text style={{marginLeft:-15}} onPress={this.isChecked.bind(this)}>
                             请阅读并勾选
                         </Text>
                         <TouchableOpacity activeOpacity={0.8} onPress = {this.readProtocol.bind(this)}>
-                            <Text style={{color:"#0078E6"}}>
+                            <Text style={{color:"#0078E6",marginLeft:5}}>
                                 《共生网消费者注册协议》
                             </Text>
                         </TouchableOpacity>

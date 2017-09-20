@@ -23,8 +23,8 @@ export default class extends React.Component {
         tabBarLabel: '未排队',
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.data = {
             code: 0,
             data: [
@@ -36,7 +36,7 @@ export default class extends React.Component {
             modalVisible: false,
             loadVisible: true,
             onClosingState: false,
-            listView : null
+            mainView : null
         };
     }
 
@@ -44,16 +44,14 @@ export default class extends React.Component {
         InteractionManager.runAfterInteractions(() => {
             this.setState({
                 loadVisible: false,
-                listView : this.createListView()
+                mainView : this.createListView()
             })
         })
     }
 
     createListView() {
         return (
-            <List
-                renderItem={this.renderItem.bind(this)} data={this.data}
-            />
+            <List renderItem={this.renderItem.bind(this)} data={this.data} />
         )
     }
 
@@ -130,14 +128,12 @@ export default class extends React.Component {
     }
 
     render() {
-        let BContent = <Button onPress={this.modalClose.bind(this)} style={[styles.btn, styles.btnModal]} title="X"/>;
         return (
             <View style={{flex: 1}}>
-                {this.state.listView ?
-                    <View style={{flex: 1}}><ActivityIndicator style={{flex: 1}} size="large"
-                                                               animating={this.state.loadVisible}/></View>
+                {this.state.loadVisible ?
+                    <ActivityIndicator style={{flex: 1}} size="large"  animating={this.state.loadVisible}/>
                     :
-                    this.state.listView
+                    this.state.mainView
                 }
                 <Modal style={[styles.modal]} position={"center"} ref={(mod) => this.modal = mod}>
                         <Image source={{uri: this.lookImage, width: "100%",height:"100%"}} style={{flex: 1,resizeMode:"contain"}}/>
@@ -150,7 +146,7 @@ const styles = StyleSheet.create({
     modal: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: "60%",
-        width: "70%"
+        height: "70%",
+        width: "80%"
     }
 })
